@@ -1,23 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import CurrentWeather from './components/current-weather/CurrentWeather';
+import Search from './components/search/search';
 
 function App() {
+
+  const handleOnSearchChange = (searchData) => {
+    const [lat, lon] = searchData.value.split(" ");
+
+    const currentWeatherFetch = fetch(`https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}`)
+    // console.log(searchData);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Search onSearchChamge={handleOnSearchChange} />
+      <CurrentWeather /> 
     </div>
   );
 }
